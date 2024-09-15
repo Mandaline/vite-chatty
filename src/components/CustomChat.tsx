@@ -13,10 +13,8 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI }: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
 
-  // Reference to the bottom of the chat history
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Automatically scroll to the bottom of the chat when new messages are added
   useEffect(() => {
     if (bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: "smooth" });
@@ -28,10 +26,8 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI }: any) => {
     try {
     
     const result = await fetchAPI(input);
-    // Add the user's message
     setMessages([...messages, { sender: "user", text: input }]);
 
-    // Clear the input field
     setInput("");
 
     setMessages((prev) => [

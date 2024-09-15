@@ -2,7 +2,16 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  height: 100vh;
+  min-height: calc(100vh - 95px);
+}
+.page-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.uploader-container {
+  width: 300px;
+  margin: 0 auto;
 }
 
 /* General styling for the chat container */
@@ -16,7 +25,7 @@
   min-width: 300px;
   border: 1px solid #424141;
   border-radius: 10px;
-  background-color: #3b3b3b;
+  background-color: #2d303a;
   overflow: hidden;
   margin: 50px auto;
 }
@@ -57,9 +66,8 @@
 /* Input area container */
 .chat-input-container {
   display: flex;
-  border-top: 1px solid #a0a0a0;
   padding: 10px;
-  background-color: rgb(102 102 102);
+  background-color:#001529;
 }
 
 /* Text input field */
@@ -76,7 +84,7 @@
 .send-button {
   margin-left: 10px;
   padding: 10px 15px;
-  background-color: #324bcf;
+  background-color: #1677ff;
   color: white;
   border: none;
   border-radius: 20px;
@@ -99,4 +107,21 @@
 
 .chat-history::-webkit-scrollbar-track {
   background-color: #f7f7f7;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+form input[type="text" i] {
+ height: 27px;
+}
+form textarea {
+  height: 100px;
+}
+form button {
+  background-color: #1677ff;
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
 }
