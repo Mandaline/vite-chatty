@@ -38,13 +38,13 @@ function ImageUploader() {
     formData.append("description", description);
 
     try {
-      const response = await axios.post<UploadResponse>("/upload-image", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post<UploadResponse>("http://127.0.0.1:8000/api/upload-image", formData);
 
       console.log("Optimized Description:", response.data.optimized_description);
+      setSelectedImage(null);
+      setTitle("");
+      setDescription("");
+
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -61,6 +61,7 @@ function ImageUploader() {
           required
         />
         <input
+  
           type="file"
           accept="image/*"
           onChange={handleImageChange}
