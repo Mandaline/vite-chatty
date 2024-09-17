@@ -112,22 +112,34 @@
 .product-page {
   padding: 100px 40px;
 }
+
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
 form input[type="text" i] {
  height: 27px;
 }
+
 form textarea {
   height: 100px;
 }
+
 form button {
   background-color: #1677ff;
   color: white;
   font-size: 12px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+form button:disabled {
+  background-color: #6193da;
 }
 
 .image-gallery {
@@ -137,6 +149,7 @@ form button {
 .flex-container {
   display: flex;
   gap: 30px;
+  margin-bottom: 50px;
 }
 
 .flex-item {
@@ -167,7 +180,8 @@ form button {
 }
 
 .flex-item h3 {
-  margin-top: 0;
+  margin: 0 0 7px;
+  font-size: 16px;
 }
 
 .title-block {
@@ -192,3 +206,27 @@ form button {
   outline: none;
   border: none;
 }
+
+h3.keywords {
+  margin: 10px 0 0;
+  font-size: 15px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #09f;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

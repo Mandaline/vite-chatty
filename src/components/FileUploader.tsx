@@ -4,8 +4,12 @@ import axios from "axios";
 interface UploadResponse {
   optimized_description: string;
 }
+interface LoadingState {
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+}
 
-function ImageUploader() {
+function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [description, setDescription] = useState<string>("");
   const [title, setTitle] = useState<string>("");
@@ -26,6 +30,7 @@ function ImageUploader() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true)
 
     if (!selectedImage || !title || !description) {
       alert("Please provide an image, title, and description");
@@ -44,6 +49,7 @@ function ImageUploader() {
       setSelectedImage(null);
       setTitle("");
       setDescription("");
+      setIsLoading(false)
 
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -61,7 +67,6 @@ function ImageUploader() {
           required
         />
         <input
-  
           type="file"
           accept="image/*"
           onChange={handleImageChange}
@@ -73,7 +78,15 @@ function ImageUploader() {
           onChange={handleDescriptionChange}
           required
         />
-        <button type="submit">Upload Product</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? (
+            <>
+            Loading
+            <div className="spinner" />
+            </>
+          )
+           : "Upload Product"}
+        </button>
       </form>
     </div>
   );
