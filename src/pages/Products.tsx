@@ -19,7 +19,9 @@ const Products = () => {
   const fetchImages = async () => {
     try {
       const response = await axios.get<ImageData[]>('http://127.0.0.1:8000/api/get-images');
-      setImages(response.data);
+      const sortedImages = response.data.sort((a, b) => b.id - a.id);
+
+      setImages(sortedImages);
     } catch (error) {
       console.error('Error fetching images:', error);
     }

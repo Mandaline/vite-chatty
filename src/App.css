@@ -3,12 +3,11 @@
   justify-content: flex-end;
   align-items: flex-end;
   min-height: calc(100vh - 95px);
-}
-.page-wrap {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
+
 .uploader-container {
   width: 300px;
   margin: 0 auto;
@@ -111,6 +110,8 @@
 
 .product-page {
   padding: 100px 40px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 form {
@@ -136,6 +137,7 @@ form button {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  height: 33px;
 }
 
 form button:disabled {

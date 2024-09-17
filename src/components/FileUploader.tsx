@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 
 interface UploadResponse {
@@ -13,6 +13,8 @@ function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [description, setDescription] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -51,6 +53,10 @@ function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
       setDescription("");
       setIsLoading(false)
 
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+
     } catch (error) {
       console.error("Error uploading image:", error);
     }
@@ -71,6 +77,7 @@ function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
           accept="image/*"
           onChange={handleImageChange}
           required
+          ref={fileInputRef}
         />
         <textarea
           placeholder="Enter a description of product materials"
