@@ -1,18 +1,10 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { DeleteOutlined } from '@ant-design/icons';
-
-interface ImageData {
-  id: number;
-  title: string;
-  user_description: string;
-  optimized_description: string;
-  image_url: string;
-  keywords: string;
-}
+import { ProductData } from './types';
 
 interface ProductGridProps {
-  images: ImageData[];
+  images: ProductData[];
   handleDelete: (id: number) => void;
 }
 
@@ -20,7 +12,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ images, handleDelete }) => {
 
   return (
     <div className="image-gallery">
-      {images.map((image: ImageData) => (
+      {images.map((image: ProductData) => (
         <div key={image.id} className="flex-container">
           <div className="flex-image">
             <img src={image.image_url} alt={image.title} />

@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
 import parse from 'html-react-parser';
 import { CameraOutlined, SendOutlined } from "@ant-design/icons";
+import { ProductData } from "./types";
 
 interface Message {
   sender: "user" | "bot";
   text: string;
 }
 
+interface FetchAPIResult {
+  message: string;
+  products: ProductData[];  // Array of ProductData objects
+}
+
 interface CustomChatProps {
-  fetchAPI: (messageText: string) => Promise<string>;
+  fetchAPI: (messageText: string) => Promise<FetchAPIResult>
   setProducts: (product: any) => void;
-  screenshot: any;
+  screenshot: string | null;
   setWebcamActive: (active: boolean) => void;
 }
 
@@ -19,7 +25,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
   setProducts,
   setWebcamActive,
   screenshot
-}: any) => {
+}) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
 
