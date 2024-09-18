@@ -2,6 +2,7 @@ import axios from 'axios'
 import CustomChat from '../components/CustomChat'
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
+import WebcamModal from '../components/Webcam';
 
 
 const fetchAPI = async (messageText: string) => {
@@ -19,15 +20,30 @@ const fetchAPI = async (messageText: string) => {
 
 const Chat = () => {
   const [products, setProducts] = useState([]);
-  console.log("p", products)
+  const [webcamActive, setWebcamActive] = useState(false);
+  const [screenshot, setScreenshot] = useState(null);
+
+  console.log("p", screenshot)
   return (
     <div className="chat-page__wrap">
-      <CustomChat fetchAPI={fetchAPI} setProducts={setProducts}/>
+      <CustomChat
+        fetchAPI={fetchAPI}
+        setProducts={setProducts}
+        setWebcamActive={setWebcamActive}
+        screenshot={screenshot}
+      />
       <div className="product-card__list">
         {products?.map((product, i) => (
           <ProductCard key={`product-${i}`} product={product} />
         ))}
       </div>
+      {webcamActive && 
+        <WebcamModal
+          setWebcamActive={setWebcamActive}
+          screenshot={screenshot}
+          setScreenshot={setScreenshot}
+        />
+      }
     </div>
   )
 }

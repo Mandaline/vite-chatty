@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import parse from 'html-react-parser';
+import { CameraOutlined, SendOutlined } from "@ant-design/icons";
 
 interface Message {
   sender: "user" | "bot";
@@ -9,9 +10,16 @@ interface Message {
 interface CustomChatProps {
   fetchAPI: (messageText: string) => Promise<string>;
   setProducts: (product: any) => void;
+  screenshot: any;
+  setWebcamActive: (active: boolean) => void;
 }
 
-const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI, setProducts }: any) => {
+const CustomChat: React.FC<CustomChatProps> = ({
+  fetchAPI,
+  setProducts,
+  setWebcamActive,
+  screenshot
+}: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -28,7 +36,7 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI, setProducts }: any) =
     try {
     
     const result = await fetchAPI(input);
-    console.log("result", result)
+  
     setMessages([...messages, { sender: "user", text: input }]);
 
     setInput("");
@@ -72,6 +80,13 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI, setProducts }: any) =
       </div>
 
       <div className="chat-input-container">
+        <button
+          className="camera-button"
+          onClick={() => setWebcamActive(true)}
+        >
+          <CameraOutlined />
+          {screenshot && <div className="camera-badge">1</div>}
+        </button>
         <input
           type="text"
           className="chat-input"
@@ -81,7 +96,7 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI, setProducts }: any) =
           onKeyDown={handleKeyDown}
         />
         <button className="send-button" onClick={handleSendMessage}>
-          Send
+          <SendOutlined />
         </button>
       </div>
     </div>
