@@ -1,11 +1,9 @@
-.page-wrap {
+.chat-page__wrap {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
   min-height: calc(100vh - 95px);
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  gap: 50px;
 }
 
 .ant-menu-item {
@@ -54,9 +52,13 @@
 
 /* User messages */
 .user-message {
-  background-color: #324bcf;
+  background-color: #213391;
   color: white;
   align-self: flex-end;
+}
+
+.hidden {
+  display: none;
 }
 
 /* Bot messages */
@@ -237,3 +239,24 @@ h3.keywords {
   }
 }
 
+.product-card__list {
+  width: 50%;
+}
+
+.product-card__list img {
+  max-width: 250px;
+  border-radius: 5px;
+}
+
+.product-card__list .image-wrap {
+  display: flex;
+  gap: 30px;
+}
+
+.product-card__list .metadata p {
+  font-size: 12px;
+  max-width: 280px;
+} 
+.product-card__list .text-wrap {
+  font-size: 14px;
+}

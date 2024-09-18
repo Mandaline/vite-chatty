@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import parse from 'html-react-parser';
 
 interface Message {
   sender: "user" | "bot";
@@ -6,10 +7,11 @@ interface Message {
 }
 
 interface CustomChatProps {
-  fetchAPI: (messageText: string) => Promise<string>;  // Define the prop type for fetchAPI
+  fetchAPI: (messageText: string) => Promise<string>;
+  setProducts: (product: any) => void;
 }
 
-const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI }: any) => {
+const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI, setProducts }: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
 
@@ -26,14 +28,17 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI }: any) => {
     try {
     
     const result = await fetchAPI(input);
+    console.log("result", result)
     setMessages([...messages, { sender: "user", text: input }]);
 
     setInput("");
 
     setMessages((prev) => [
       ...prev,
-      { sender: "bot", text: result }
+      { sender: "bot", text: result.message }
     ]);
+
+    setProducts(result?.products)
     
     } catch (e) {
       console.log("Error occurred while fetching", e);
@@ -45,26 +50,27 @@ const CustomChat: React.FC<CustomChatProps> = ({ fetchAPI }: any) => {
       handleSendMessage();
     }
   };
-
+  console.log(messages)
   return (
     <div className="chat-container">
-      {/* Chat History */}
       <div className="chat-history">
-        {messages.map((message, index) => (
-          <div
+        {messages.map((message, index) => {
+          
+          const text = message.sender === "user" ? message.text : parse(message.text)
+          return (
+            <div
             key={index}
             className={`chat-message ${
               message.sender === "user" ? "user-message" : "bot-message"
             }`}
           >
-            {message.text}
+            {text}
           </div>
-        ))}
-        {/* This is the reference to the bottom of the chat */}
+          )
+        })}
         <div ref={bottomRef} />
       </div>
 
-      {/* Input Field */}
       <div className="chat-input-container">
         <input
           type="text"
