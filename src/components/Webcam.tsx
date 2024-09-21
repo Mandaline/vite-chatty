@@ -45,7 +45,6 @@ const WebcamCapture: React.FC<WebcamCaptureProps> = ({
 
         {screenshot && isAccepted && (
           <div>
-            <h3>Screenshot</h3>
             <img src={screenshot} alt="Captured screenshot" />
             <div className="webcam__buttons">
               <button onClick={()=> setWebcamActive(false)} className="capture">Accept?</button>

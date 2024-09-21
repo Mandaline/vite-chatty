@@ -1,0 +1,1 @@
+export const faceShapes = ["Oval", "Round", "Heart", "Square", "Rectangle", "Diamond", "Triangle"]

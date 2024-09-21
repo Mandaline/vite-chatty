@@ -1,20 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import { CameraOutlined, SendOutlined } from "@ant-design/icons";
 import { ProductData } from "./types";
 
 interface Message {
   sender: "user" | "bot";
-  text: string;
+  text: string | JSX.Element;
 }
 
 interface FetchAPIResult {
   message: string;
-  products: ProductData[];  // Array of ProductData objects
+  screenshot: string | null;
+  products: ProductData[]; // Array of ProductData objects
 }
 
 interface CustomChatProps {
-  fetchAPI: (messageText: string) => Promise<FetchAPIResult>
+  fetchAPI: (messageText: string, screenshot: string | null) => Promise<FetchAPIResult>;
   setProducts: (product: any) => void;
   screenshot: string | null;
   setWebcamActive: (active: boolean) => void;
@@ -24,10 +25,11 @@ const CustomChat: React.FC<CustomChatProps> = ({
   fetchAPI,
   setProducts,
   setWebcamActive,
-  screenshot
+  screenshot,
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false); // Add loading state
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -39,23 +41,30 @@ const CustomChat: React.FC<CustomChatProps> = ({
 
   const handleSendMessage = async () => {
     if (input.trim() === "") return;
-    try {
-    
-    const result = await fetchAPI(input);
-  
-    setMessages([...messages, { sender: "user", text: input }]);
+
+    setLoading(true);
+    setMessages([
+      ...messages,
+      { sender: "user", text: input },
+      { sender: "bot", text: <TypingAnimation /> },
+    ]);
 
     setInput("");
 
-    setMessages((prev) => [
-      ...prev,
-      { sender: "bot", text: result.message }
-    ]);
+    try {
+      const result = await fetchAPI(input, screenshot);
 
-    setProducts(result?.products)
-    
+      setMessages((prev) => {
+        const updatedMessages = [...prev];
+        updatedMessages.pop();
+        return [...updatedMessages, { sender: "bot", text: parse(result.message) as string}];
+      });
+
+      setProducts(result?.products);
     } catch (e) {
       console.log("Error occurred while fetching", e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,32 +73,25 @@ const CustomChat: React.FC<CustomChatProps> = ({
       handleSendMessage();
     }
   };
-  console.log(messages)
+
   return (
     <div className="chat-container">
       <div className="chat-history">
-        {messages.map((message, index) => {
-          
-          const text = message.sender === "user" ? message.text : parse(message.text)
-          return (
-            <div
+        {messages.map((message, index) => (
+          <div
             key={index}
             className={`chat-message ${
               message.sender === "user" ? "user-message" : "bot-message"
             }`}
           >
-            {text}
+            {message.text}
           </div>
-          )
-        })}
+        ))}
         <div ref={bottomRef} />
       </div>
 
       <div className="chat-input-container">
-        <button
-          className="camera-button"
-          onClick={() => setWebcamActive(true)}
-        >
+        <button className="camera-button" onClick={() => setWebcamActive(true)}>
           <CameraOutlined />
           {screenshot && <div className="camera-badge">1</div>}
         </button>
@@ -109,5 +111,12 @@ const CustomChat: React.FC<CustomChatProps> = ({
   );
 };
 
-export default CustomChat;
+const TypingAnimation: React.FC = () => (
+  <div className="typing">
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+  </div>
+);
 
+export default CustomChat;
