@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import parse from "html-react-parser";
 import { CameraOutlined, SendOutlined } from "@ant-design/icons";
-import { ProductData } from "./types";
+import { ProductData } from "../types";
 
 interface Message {
   sender: "user" | "bot";

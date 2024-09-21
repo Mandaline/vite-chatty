@@ -25,7 +25,9 @@ const Chat = () => {
   const [products, setProducts] = useState([]);
   const [webcamActive, setWebcamActive] = useState(false);
   const [screenshot, setScreenshot] = useState<string | null>(null);
-console.log(products)
+  const [faceShape, setFaceShape] = useState<string | null>(faceShapes[0]);
+
+
   return (
     <div className="chat-page__wrap">
       <CustomChat
@@ -57,10 +59,27 @@ console.log(products)
           </button>
         </div>
         <p>Or select one of the following if you already know your type:</p>
-          {faceShapes.map((shape, i) => (
-            <span key={`shape-${i}`}>{shape}</span>
-          ))}
-        <p><br/>Then <strong>ask in the chat</strong> what style you are looking for!</p>
+          {!screenshot ? faceShapes.map((shape, i) => (
+            <span
+              key={`shape-${i}`}
+              onClick={() => setFaceShape(shape)}
+              className={shape.shapeType === faceShape?.shapeType ? "active tab-select" : "tab-select"}
+            >
+              {shape.shapeType}
+            </span>
+          )):
+          <span onClick={() => setScreenshot(null)}>Choose face shape</span>
+          }
+        <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
+        {faceShape && !screenshot &&
+          <div className="faceshapes__wrap">
+            <img src={faceShape.image} />
+            <div>
+              <h3>{faceShape.shapeType}</h3>
+              <p>{faceShape.shapeDef}</p>
+            </div>
+          </div>
+        }
       </div>
       }
       {webcamActive && 

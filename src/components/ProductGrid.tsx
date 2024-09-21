@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { DeleteOutlined } from '@ant-design/icons';
-import { ProductData } from './types';
+import { ProductData } from '../types';
 
 interface ProductGridProps {
   images: ProductData[];

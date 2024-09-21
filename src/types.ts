@@ -7,3 +7,9 @@ export interface ProductData {
   image_url: string;
   keywords: string;
 }
+
+export interface FaceShape {
+  shapeType: string;
+  shapeDef: string;
+  image: string;
+}

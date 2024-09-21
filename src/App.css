@@ -304,6 +304,11 @@ h3.keywords {
   margin-left: 20px;
 }
 
+.instructions__wrap p,
+.instructions__wrap h3 {
+  margin: 8px 0;
+}
+
 .instructions__wrap span:not(.camera-button span) {
   background-color: #1677ff;
   color: white;
@@ -316,7 +321,8 @@ h3.keywords {
   transition: background-color .2s ease-in;
 }
 
-.instructions__wrap span:not(.camera-button span):hover {
+.instructions__wrap span:not(.camera-button span):hover,
+.instructions__wrap span:not(.camera-button span).active  {
   background-color: #0056b3;;
 }
 
@@ -345,6 +351,30 @@ h3.keywords {
 
 .instructions__flex p {
   margin: 0;
+}
+
+.instructions__wrap .tab-select {
+ margin: 15px 0 10px;
+ display: inline-block;
+}
+
+.faceshapes__wrap {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.faceshapes__wrap h3 {
+  font-size: 17px;
+}
+
+.faceshapes__wrap p {
+  font-size: 14px;
+  max-width: 400px;
+}
+
+.faceshapes__wrap img {
+  width: 220px;
 }
 
 .product-card__list {
