@@ -1,35 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import parse from "html-react-parser";
 import { CameraOutlined, SendOutlined } from "@ant-design/icons";
-import { ProductData } from "../types";
+import { CustomChatProps, Message } from "../types";
 
-interface Message {
-  sender: "user" | "bot";
-  text: string | JSX.Element;
-}
-
-interface FetchAPIResult {
-  message: string;
-  screenshot: string | null;
-  products: ProductData[]; // Array of ProductData objects
-}
-
-interface CustomChatProps {
-  fetchAPI: (messageText: string, screenshot: string | null) => Promise<FetchAPIResult>;
-  setProducts: (product: any) => void;
-  screenshot: string | null;
-  setWebcamActive: (active: boolean) => void;
-}
 
 const CustomChat: React.FC<CustomChatProps> = ({
   fetchAPI,
   setProducts,
   setWebcamActive,
   screenshot,
+  selectedFaceShape
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false); // Add loading state
+  const [, setLoading] = useState<boolean>(false); // Add loading state
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +23,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
     }
   }, [messages]);
 
+  console.log("ioi", selectedFaceShape)
   const handleSendMessage = async () => {
     if (input.trim() === "") return;
 
@@ -52,7 +37,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
     setInput("");
 
     try {
-      const result = await fetchAPI(input, screenshot);
+      const result = await fetchAPI(input, screenshot, selectedFaceShape);
 
       setMessages((prev) => {
         const updatedMessages = [...prev];
@@ -75,13 +60,13 @@ const CustomChat: React.FC<CustomChatProps> = ({
   };
 
   return (
-    <div className="chat-container">
-      <div className="chat-history">
+    <div className="chat__container">
+      <div className="chat__history">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`chat-message ${
-              message.sender === "user" ? "user-message" : "bot-message"
+            className={`chat__message ${
+              message.sender === "user" ? "chat__user-message" : "chat__bot-message"
             }`}
           >
             {message.text}
@@ -90,20 +75,20 @@ const CustomChat: React.FC<CustomChatProps> = ({
         <div ref={bottomRef} />
       </div>
 
-      <div className="chat-input-container">
-        <button className="camera-button" onClick={() => setWebcamActive(true)}>
+      <div className="chat__input-container">
+        <button className="chat__camera-button" onClick={() => setWebcamActive(true)}>
           <CameraOutlined />
-          {screenshot && <div className="camera-badge">1</div>}
+          {screenshot && <div className="chat__camera-badge">1</div>}
         </button>
         <input
           type="text"
-          className="chat-input"
+          className="chat__input"
           placeholder="Type your message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <button className="send-button" onClick={handleSendMessage}>
+        <button className="chat__send-button" onClick={handleSendMessage}>
           <SendOutlined />
         </button>
       </div>

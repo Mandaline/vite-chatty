@@ -45,7 +45,7 @@ const Products = () => {
   };
 
   return (
-    <div className="product-page">
+    <div className="product__page-wrap">
       <FileUploader setIsLoading={setIsLoading} isLoading={isLoading} />
       <ProductGrid handleDelete={handleDelete} images={images} />
     </div>

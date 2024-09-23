@@ -5,13 +5,19 @@ import { useState } from 'react';
 import WebcamModal from '../components/Webcam';
 import { CameraOutlined } from '@ant-design/icons';
 import { faceShapes } from '../constants';
+import { FaceShape } from '../types';
 
 
-const fetchAPI = async (messageText: string, screenshot: string | null) => {
+const fetchAPI = async (
+  messageText: string,
+  screenshot: string | null,
+  selectedFaceShape: string | null
+) => {
   try {
     const response = await axios.post("http://127.0.0.1:8000/api/chat", {
       message: messageText,
-      screenshot: screenshot
+      screenshot: screenshot,
+      faceShape: selectedFaceShape
     });
     
     return response.data;
@@ -25,18 +31,18 @@ const Chat = () => {
   const [products, setProducts] = useState([]);
   const [webcamActive, setWebcamActive] = useState(false);
   const [screenshot, setScreenshot] = useState<string | null>(null);
-  const [faceShape, setFaceShape] = useState<string | null>(faceShapes[0]);
-
+  const [faceShape, setFaceShape] = useState<FaceShape>(faceShapes[0]);
 
   return (
-    <div className="chat-page__wrap">
+    <div className="chat__page-wrap">
       <CustomChat
         fetchAPI={fetchAPI}
         setProducts={setProducts}
         setWebcamActive={setWebcamActive}
         screenshot={screenshot}
+        selectedFaceShape={faceShape?.shapeType}
       />
-      {products.length ?
+      {products?.length ?
       <div className="product-card__list">
         {products?.map((product, i) => (
           <ProductCard key={`product-${i}`} product={product} />
@@ -68,7 +74,7 @@ const Chat = () => {
               {shape.shapeType}
             </span>
           )):
-          <span onClick={() => setScreenshot(null)}>Choose face shape</span>
+          <span onClick={() => setScreenshot(null)} className="tab-select">Choose face shape</span>
           }
         <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
         {faceShape && !screenshot &&

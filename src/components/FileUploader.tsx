@@ -63,7 +63,7 @@ function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
   };
 
   return (
-    <div className="uploader-container">
+    <div className="product__uploader-wrap">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
