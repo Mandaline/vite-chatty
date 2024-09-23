@@ -136,22 +136,24 @@ h3.product-gallery__keywords {
   display: flex;
   min-height: calc(100vh - 130px);
   gap: 30px;
-  flex-direction: column;
-  margin: 40px auto;
-  max-width: 1400px;
+  flex-direction: column-reverse;
+  margin: 20px auto;
+  max-width: 1450px;
+  padding: 0 25px;
 }
 
 .chat__container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 670px;
-  width: 90%;
+  height: calc(100vh - 40px);
+  max-height: 670px;
+  width: 100%;
   border: 1px solid #424141;
   border-radius: 10px;
   background-color: #2d303a;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .chat__history {
@@ -190,7 +192,7 @@ h3.product-gallery__keywords {
   gap: 10px;
 }
 
-.chat__input-container.chat__camera-button {
+.chat__input-container .chat__camera-button {
   color: white;
   padding: 0;
   transition: opacity .2s ease-in;
@@ -208,11 +210,12 @@ h3.product-gallery__keywords {
   top: 5px;
   right: -1px;
 }
-.chat__input-container .camera-button:hover {
+
+.chat__input-container .chat__camera-button:hover {
   opacity: .5;
 }
 
-.chat__input-container .camera-button svg {
+.chat__input-container .chat__camera-button svg {
   height: 25px;
   width: 25px;
 }
@@ -254,9 +257,8 @@ h3.product-gallery__keywords {
 }
 
 /* Chat Instructions */
-.instructions__wrap {
-  width: 75%;
-  margin-left: 20px;
+.instructions__wrap p {
+  font-size: 14px;
 }
 
 .instructions__wrap p,
@@ -264,7 +266,7 @@ h3.product-gallery__keywords {
   margin: 8px 0;
 }
 
-.instructions__wrap span:not(.camera-button span) {
+.instructions__wrap span:not(.chat__camera-button span):not(.faceshape__arrow span) {
   background-color: #1677ff;
   color: white;
   font-size: 10px;
@@ -276,12 +278,12 @@ h3.product-gallery__keywords {
   transition: background-color .2s ease-in;
 }
 
-.instructions__wrap span:not(.camera-button span):hover,
-.instructions__wrap span:not(.camera-button span).active  {
+.instructions__wrap span:not(.chat__camera-button span):hover,
+.instructions__wrap span:not(.chat__camera-button span).active  {
   background-color: #0056b3;;
 }
 
-.instructions__wrap .camera-button {
+.instructions__wrap .chat__camera-button {
   background-color: transparent;
   color: white;
   transition: opacity .2s ease-in;
@@ -289,12 +291,12 @@ h3.product-gallery__keywords {
   margin-top: 2px;
 }
 
-.instructions__wrap .camera-button svg {
+.instructions__wrap .chat__camera-button svg {
   width: 20px;
   height: 20px;
 }
 
-.instructions__wrap .camera-button:hover {
+.instructions__wrap .chat__camera-button:hover {
   opacity: .5;
 }
 
@@ -309,27 +311,44 @@ h3.product-gallery__keywords {
 }
 
 .instructions__wrap .tab-select {
- margin: 15px 0 10px;
+ margin: 10px 0;
  display: inline-block;
 }
 
 .faceshapes__wrap {
   display: flex;
-  gap: 30px;
-  margin-top: 40px;
+  gap: 15px;
+  margin-top: 25px;
 }
 
 .faceshapes__wrap h3 {
   font-size: 17px;
+  margin-top: 0;
 }
 
 .faceshapes__wrap p {
   font-size: 14px;
-  max-width: 400px;
 }
 
 .faceshapes__wrap img {
-  width: 220px;
+  width: 100px;
+  height: 100%;
+}
+
+.faceshape__arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.faceshape__arrow-wrap {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.faceshape__arrow span {
+  border: white 1px solid;
+  border-radius: 5px;
+  padding: 3px;
 }
 
 /* Chat Product Results */
@@ -368,23 +387,72 @@ h3.product-gallery__keywords {
   margin: 0;
 }
 
+@media only screen and (min-width: 600px) {
+  .chat__page-wrap {
+    margin: 20px auto;
+  }
+  .instructions__wrap {
+    margin-left: 20px;
+  }
+  .chat__container {
+    width: 90%;
+    margin-top: 20px auto;
+    max-height: auto;
+    height: 670px;
+  }
+
+  .faceshapes__wrap {
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .faceshapes__wrap img {
+    width: 220px;
+  }
+  .faceshapes__wrap p {
+    max-width: 400px;
+  }
+  .faceshapes__wrap h3 {
+    margin-top: 8px;
+  }
+  
+  .instructions__wrap {
+    width: 75%;
+  }
+  .instructions__wrap p {
+    font-size: 16px;
+  }
+
+  .instructions__wrap .tab-select {
+    margin: 15px 0 10px;
+  }
+}
+
 @media only screen and (min-width: 1200px) {
   .chat__page-wrap {
     flex-direction: row;
   }
+
+  .chat__container {
+    margin: 0 auto;
+  }
+
   .product-card__list {
     width: 75%;
     max-width: 950px;
     display: flex;
     gap: 50px;
   }
+
   .chat__container {
     max-width: 350px;
     width: 25%;
   }
+
   .product-card__list img {
     max-width: 150px;
     border-radius: 5px;
-    
+  }
+  .faceshape__arrow {
+    display: none;
   }
 }

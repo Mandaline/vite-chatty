@@ -3,7 +3,7 @@ import CustomChat from '../components/CustomChat'
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
 import WebcamModal from '../components/Webcam';
-import { CameraOutlined } from '@ant-design/icons';
+import { ArrowDownOutlined, CameraOutlined } from '@ant-design/icons';
 import { faceShapes } from '../constants';
 import { FaceShape } from '../types';
 
@@ -58,7 +58,7 @@ const Chat = () => {
             Either take a screenshot of your face, (up close and in good lighting)
           </p>
           <button 
-            className="camera-button" 
+            className="chat__camera-button" 
             onClick={() => setWebcamActive(true)}
           >
             <CameraOutlined />
@@ -76,7 +76,12 @@ const Chat = () => {
           )):
           <span onClick={() => setScreenshot(null)} className="tab-select">Choose face shape</span>
           }
-        <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
+        <div className="faceshape__arrow-wrap">
+          <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
+          <div className="faceshape__arrow">
+            <ArrowDownOutlined />
+          </div>
+        </div>
         {faceShape && !screenshot &&
           <div className="faceshapes__wrap">
             <img src={faceShape.image} />
