@@ -225,11 +225,11 @@ h3.product-gallery__keywords {
   border: none;
   border-radius: 20px;
   outline: none;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .chat__send-button {
-  padding: 10px 12px;
+  padding: 4px 8px;
   background-color: #1677ff;
   color: white;
   border: none;
@@ -388,6 +388,9 @@ h3.product-gallery__keywords {
 }
 
 @media only screen and (min-width: 600px) {
+  .chat__send-button {
+    padding: 10px 12px;
+  }
   .chat__page-wrap {
     margin: 20px auto;
   }
@@ -400,10 +403,6 @@ h3.product-gallery__keywords {
     margin: 20px auto;
     max-height: 100%;
     height: 670px;
-  }
-
-  .chat__input {
-    font-size: 16px;
   }
 
   .product-card {
