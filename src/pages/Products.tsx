@@ -11,6 +11,7 @@ interface ImageData {
   image_url: string;
   keywords: string;
 }
+const flaskUrl = import.meta.env.VITE_FLASK_APP_URL;
 
 const Products = () => {
   const [images, setImages] = useState<ImageData[]>([]);
@@ -18,7 +19,7 @@ const Products = () => {
 
   const fetchImages = async () => {
     try {
-      const response = await axios.get<ImageData[]>('http://127.0.0.1:8000/api/get-images');
+      const response = await axios.get<ImageData[]>(`${flaskUrl}/api/get-images`);
       const sortedImages = response.data.sort((a, b) => b.id - a.id);
 
       setImages(sortedImages);
@@ -36,7 +37,7 @@ const Products = () => {
   const handleDelete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/delete-image/${id}`);
+        await axios.delete(`${flaskUrl}/api/delete-image/${id}`);
         setImages(images.filter(image => image.id !== id));
       } catch (error) {
         console.error('Error deleting product:', error);

@@ -8,6 +8,7 @@ interface LoadingState {
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
 }
+const flaskUrl = import.meta.env.VITE_FLASK_APP_URL;
 
 function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -45,7 +46,7 @@ function ImageUploader({ setIsLoading, isLoading }: LoadingState) {
     formData.append("description", description);
 
     try {
-      const response = await axios.post<UploadResponse>("http://127.0.0.1:8000/api/upload-image", formData);
+      const response = await axios.post<UploadResponse>(`${flaskUrl}/api/upload-image`, formData);
 
       console.log("Optimized Description:", response.data.optimized_description);
       setSelectedImage(null);

@@ -7,6 +7,7 @@ import { ArrowDownOutlined, CameraOutlined, CloseSquareOutlined } from '@ant-des
 import { faceShapes } from '../constants';
 import { FaceShape } from '../types';
 
+const flaskUrl = import.meta.env.VITE_FLASK_APP_URL;
 
 const fetchAPI = async (
   messageText: string,
@@ -14,7 +15,7 @@ const fetchAPI = async (
   selectedFaceShape: string | null
 ) => {
   try {
-    const response = await axios.post(`${process.env.VITE_FLASK_APP_URL}/api/chat`, {
+    const response = await axios.post(`${flaskUrl}/api/chat`, {
       message: messageText,
       screenshot: screenshot,
       faceShape: selectedFaceShape
