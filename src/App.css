@@ -495,4 +495,8 @@ h3.product-gallery__keywords {
     width: 74%;
     font-size: 14px;
   }
+
+  .chat__products-link {
+    display: none;
+  }
 }
