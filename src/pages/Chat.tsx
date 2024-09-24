@@ -3,7 +3,7 @@ import CustomChat from '../components/CustomChat'
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
 import WebcamModal from '../components/Webcam';
-import { ArrowDownOutlined, CameraOutlined } from '@ant-design/icons';
+import { ArrowDownOutlined, CameraOutlined, CloseSquareOutlined } from '@ant-design/icons';
 import { faceShapes } from '../constants';
 import { FaceShape } from '../types';
 
@@ -99,6 +99,11 @@ const Chat = () => {
           screenshot={screenshot}
           setScreenshot={setScreenshot}
         />
+      }
+      {products?.length > 0 &&
+        <div onClick={() => setProducts([])} className="clear-button">
+          <CloseSquareOutlined />
+        </div>
       }
     </div>
   )

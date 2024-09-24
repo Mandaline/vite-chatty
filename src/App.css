@@ -140,6 +140,7 @@ h3.product-gallery__keywords {
   margin: 20px auto;
   max-width: 1450px;
   padding: 0 25px;
+  position: relative;
 }
 
 .chat__container {
@@ -278,8 +279,8 @@ h3.product-gallery__keywords {
   transition: background-color .2s ease-in;
 }
 
-.instructions__wrap span:not(.chat__camera-button span):hover,
-.instructions__wrap span:not(.chat__camera-button span).active  {
+.instructions__wrap span:not(.chat__camera-button span):not(.faceshape__arrow span):hover,
+.instructions__wrap span:not(.chat__camera-button span):not(.faceshape__arrow span).active  {
   background-color: #0056b3;;
 }
 

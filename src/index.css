@@ -141,3 +141,28 @@ form button:disabled {
     opacity: 0;
   }
 }
+
+.clear-button {
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.clear-button svg {
+  width: 19px;
+  height: 19px;
+}
+
+.supabase-auth-ui_ui-container {
+  max-width: 400px;
+  margin: 50px auto 0 !important;
+}
+
+.supabase-auth-ui_ui-divider {
+  display: none !important;
+}
+
+.supabase-auth-ui_ui-container input {
+  color: white;
+}
