@@ -23,7 +23,6 @@ const CustomChat: React.FC<CustomChatProps> = ({
     }
   }, [messages]);
 
-  console.log("ioi", selectedFaceShape)
   const handleSendMessage = async () => {
     if (input.trim() === "") return;
 

@@ -8,7 +8,6 @@ const Header = () => {
   const [current, setCurrent] = useState(location.pathname === '/products' ? 'r' : 'h');
 
   const onClick = (e: any) => {
-    console.log('click ', e);
     setCurrent(e.key);
   };
 

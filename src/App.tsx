@@ -58,6 +58,7 @@ function App() {
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
         providers={[]}
+        theme="dark"
       />
     );
   }
