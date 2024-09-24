@@ -13,7 +13,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-  const [, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +71,9 @@ const CustomChat: React.FC<CustomChatProps> = ({
             {message.text}
           </div>
         ))}
-        {messages.length > 1 && <a href="#products" className="chat__products-link">See products</a>}
+        {!loading && messages.length > 1 &&
+          <a href="#products" className="chat__products-link">See products</a>
+        }
         <div ref={bottomRef} />
       </div>
 
