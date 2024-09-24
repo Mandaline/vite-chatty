@@ -135,9 +135,8 @@ h3.product-gallery__keywords {
   min-height: calc(100vh - 130px);
   gap: 30px;
   flex-direction: column-reverse;
-  margin: 20px auto;
   max-width: 1450px;
-  padding: 0 25px;
+  padding: 25px;
   position: relative;
 }
 
@@ -196,6 +195,7 @@ h3.product-gallery__keywords {
   padding: 0;
   transition: opacity .2s ease-in;
   position: relative;
+  background-color: #1a1a1a;
 }
 
 .chat__camera-badge {
@@ -225,7 +225,7 @@ h3.product-gallery__keywords {
   border: none;
   border-radius: 20px;
   outline: none;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .chat__send-button {
