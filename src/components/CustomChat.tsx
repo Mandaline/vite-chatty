@@ -60,7 +60,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
   };
 
   return (
-    <div className="chat__container">
+    <div id="chat" className="chat__container">
       <div className="chat__history">
         {messages.map((message, index) => (
           <div
@@ -72,6 +72,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
             {message.text}
           </div>
         ))}
+        <a href="#products" className="chat__products-link">See products</a>
         <div ref={bottomRef} />
       </div>
 

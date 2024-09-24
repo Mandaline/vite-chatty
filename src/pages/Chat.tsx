@@ -43,7 +43,7 @@ const Chat = () => {
         selectedFaceShape={faceShape?.shapeType}
       />
       {products?.length ?
-      <div className="product-card__list">
+      <div id="products" className="product-card__list">
         {products?.map((product, i) => (
           <ProductCard key={`product-${i}`} product={product} />
         ))}
@@ -78,9 +78,9 @@ const Chat = () => {
           }
         <div className="faceshape__arrow-wrap">
           <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
-          <div className="faceshape__arrow">
+          <a href="#chat" className="faceshape__arrow">
             <ArrowDownOutlined />
-          </div>
+          </a>
         </div>
         {faceShape && !screenshot &&
           <div className="faceshapes__wrap">
