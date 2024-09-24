@@ -78,11 +78,9 @@
 
 .product-gallery__flex-image {
   width: 100%;
-  max-width: 280px;
 }
 
 .product-gallery__flex-image img {
-  max-width: 280px;
   width: 100%;
   border-radius: 6px;
 }
@@ -111,6 +109,7 @@
   color: white;
   padding: 5px;
   height: 28px;
+  background-color: #1a1a1a;
 }
 
 .product-gallery__title-block button:hover {

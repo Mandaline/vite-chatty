@@ -63,11 +63,14 @@ form {
 }
 
 form input[type="text" i] {
- height: 27px;
+  height: 27px;
+  font-size: 16px;
 }
 
 form textarea {
   height: 100px;
+  font-size: 16px;
+  padding: 6px 4px;
 }
 
 form button {
