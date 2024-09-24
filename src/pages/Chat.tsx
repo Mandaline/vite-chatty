@@ -14,7 +14,7 @@ const fetchAPI = async (
   selectedFaceShape: string | null
 ) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/chat", {
+    const response = await axios.post(`${process.env.VITE_FLASK_APP_URL}/api/chat`, {
       message: messageText,
       screenshot: screenshot,
       faceShape: selectedFaceShape
