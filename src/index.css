@@ -11,9 +11,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 body {
   margin: 0;
+  background-color: #161b27;
+  color: rgba(255, 255, 255, 0.87);
 }
+
 html {
   scroll-behavior: smooth;
 }
