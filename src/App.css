@@ -133,7 +133,7 @@ h3.product-gallery__keywords {
   display: flex;
   min-height: calc(100vh - 130px);
   gap: 30px;
-  flex-direction: column-reverse;
+  flex-direction: column;
   max-width: 1450px;
   padding: 25px;
   position: relative;
@@ -466,14 +466,14 @@ h3.product-gallery__keywords {
   .product-gallery__flex-image {
     max-width: 180px;
   }
-  .product-card__list.desktop {
+  .product-card__list.mobile {
     display: none;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .chat__page-wrap {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   .chat__container {
@@ -513,7 +513,7 @@ h3.product-gallery__keywords {
     font-size: 14px;
   }
 
-  .product-card__list.mobile {
+  .product-card__list.desktop {
     display: none;
   }
 

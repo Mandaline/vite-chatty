@@ -36,22 +36,8 @@ const Chat = () => {
 
   return (
     <div className="chat__page-wrap">
-      <CustomChat
-        fetchAPI={fetchAPI}
-        setProducts={setProducts}
-        setWebcamActive={setWebcamActive}
-        screenshot={screenshot}
-        selectedFaceShape={faceShape?.shapeType}
-      />
-      {products?.length > 0 &&
-        <div id="products" className="product-card__list mobile">
-          {products?.map((product, i) => (
-            <ProductCard key={`product-${i}`} product={product} />
-          ))}
-        </div>
-      }
       {products?.length > 0 ?
-        <div id="products" className="product-card__list desktop">
+        <div id="products" className="product-card__list">
           {products?.map((product, i) => (
             <ProductCard key={`product-${i}`} product={product} />
           ))}
@@ -99,6 +85,20 @@ const Chat = () => {
               </div>
             </div>
           }
+        </div>
+      }
+      <CustomChat
+        fetchAPI={fetchAPI}
+        setProducts={setProducts}
+        setWebcamActive={setWebcamActive}
+        screenshot={screenshot}
+        selectedFaceShape={faceShape?.shapeType}
+      />
+      {products?.length > 0 &&
+        <div className="product-card__list mobile">
+          {products?.map((product, i) => (
+            <ProductCard key={`product-${i}`} product={product} />
+          ))}
         </div>
       }
       {webcamActive && 
