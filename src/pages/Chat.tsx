@@ -37,7 +37,7 @@ const Chat = () => {
   return (
     <div className="chat__page-wrap">
       {products?.length > 0 ?
-        <div id="products" className="product-card__list">
+        <div id="products" className="product-card__list desktop">
           {products?.map((product, i) => (
             <ProductCard key={`product-${i}`} product={product} />
           ))}
