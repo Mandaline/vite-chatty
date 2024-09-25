@@ -71,9 +71,9 @@ const CustomChat: React.FC<CustomChatProps> = ({
             {message.text}
           </div>
         ))}
-        {!loading && messages.length > 1 &&
+        {/* {!loading && messages.length > 1 &&
           <a href="#products" className="chat__products-link">See products</a>
-        }
+        } */}
         <div ref={bottomRef} />
       </div>
 

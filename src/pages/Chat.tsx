@@ -95,11 +95,17 @@ const Chat = () => {
         selectedFaceShape={faceShape?.shapeType}
       />
       {products?.length > 0 &&
-        <div className="product-card__list mobile">
-          {products?.map((product, i) => (
-            <ProductCard key={`product-${i}`} product={product} />
-          ))}
-        </div>
+        <>
+          <div className="product-card__list mobile">
+            {products?.map((product, i) => (
+              <ProductCard key={`product-${i}`} product={product} />
+            ))}
+            <div onClick={() => setProducts([])} className="clear-button">
+            <CloseSquareOutlined />
+          </div>
+          </div>
+          
+        </>
       }
       {webcamActive && 
         <WebcamModal
@@ -109,7 +115,7 @@ const Chat = () => {
         />
       }
       {products?.length > 0 &&
-        <div onClick={() => setProducts([])} className="clear-button">
+        <div onClick={() => setProducts([])} className="clear-button desktop">
           <CloseSquareOutlined />
         </div>
       }
