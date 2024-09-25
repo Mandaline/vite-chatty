@@ -521,4 +521,8 @@ h3.product-gallery__keywords {
   .chat__products-link {
     display: none;
   }
+
+  .product-card__list.desktop {
+    display: flex;
+  }  
 }
