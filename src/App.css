@@ -386,6 +386,10 @@ h3.product-gallery__keywords {
   margin: 0;
 }
 
+.product-card__list.desktop {
+  display: none;
+}
+
 @media only screen and (min-width: 600px) {
   .chat__send-button {
     padding: 10px 12px;
@@ -466,9 +470,6 @@ h3.product-gallery__keywords {
   .product-gallery__flex-image {
     max-width: 180px;
   }
-  .product-card__list.mobile {
-    display: none;
-  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -513,7 +514,7 @@ h3.product-gallery__keywords {
     font-size: 14px;
   }
 
-  .product-card__list.desktop {
+  .product-card__list.mobile {
     display: none;
   }
 
