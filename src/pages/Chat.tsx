@@ -43,56 +43,63 @@ const Chat = () => {
         screenshot={screenshot}
         selectedFaceShape={faceShape?.shapeType}
       />
-      {products?.length ?
-      <div id="products" className="product-card__list">
-        {products?.map((product, i) => (
-          <ProductCard key={`product-${i}`} product={product} />
-        ))}
-      </div>
-      :
-      <div className="instructions__wrap">
-        <h2>Instructions</h2>
-        <h3>Find your perfect pair of sunglasses</h3>
-        <p>First, in order to know your face shape to make the best match possible:</p>
-        <div className="instructions__flex">
-          <p>
-            Either take a screenshot of your face, (up close and in good lighting)
-          </p>
-          <button 
-            className="chat__camera-button" 
-            onClick={() => setWebcamActive(true)}
-          >
-            <CameraOutlined />
-          </button>
+      {products?.length > 0 &&
+        <div id="products" className="product-card__list mobile">
+          {products?.map((product, i) => (
+            <ProductCard key={`product-${i}`} product={product} />
+          ))}
         </div>
-        <p>Or select one of the following if you already know your type:</p>
-          {!screenshot ? faceShapes.map((shape, i) => (
-            <span
-              key={`shape-${i}`}
-              onClick={() => setFaceShape(shape)}
-              className={shape.shapeType === faceShape?.shapeType ? "active tab-select" : "tab-select"}
+      }
+      {products?.length > 0 ?
+        <div id="products" className="product-card__list desktop">
+          {products?.map((product, i) => (
+            <ProductCard key={`product-${i}`} product={product} />
+          ))}
+        </div>
+        :
+        <div className="instructions__wrap">
+          <h2>Instructions</h2>
+          <h3>Find your perfect pair of sunglasses</h3>
+          <p>First, in order to know your face shape to make the best match possible:</p>
+          <div className="instructions__flex">
+            <p>
+              Either take a screenshot of your face, (up close and in good lighting)
+            </p>
+            <button 
+              className="chat__camera-button" 
+              onClick={() => setWebcamActive(true)}
             >
-              {shape.shapeType}
-            </span>
-          )):
-          <span onClick={() => setScreenshot(null)} className="tab-select">Choose face shape</span>
-          }
-        <div className="faceshape__arrow-wrap">
-          <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
-          <a href="#chat" className="faceshape__arrow">
-            <ArrowDownOutlined />
-          </a>
-        </div>
-        {faceShape && !screenshot &&
-          <div className="faceshapes__wrap">
-            <img src={faceShape.image} />
-            <div>
-              <h3>{faceShape.shapeType}</h3>
-              <p>{faceShape.shapeDef}</p>
-            </div>
+              <CameraOutlined />
+            </button>
           </div>
-        }
-      </div>
+          <p>Or select one of the following if you already know your type:</p>
+            {!screenshot ? faceShapes.map((shape, i) => (
+              <span
+                key={`shape-${i}`}
+                onClick={() => setFaceShape(shape)}
+                className={shape.shapeType === faceShape?.shapeType ? "active tab-select" : "tab-select"}
+              >
+                {shape.shapeType}
+              </span>
+            )):
+            <span onClick={() => setScreenshot(null)} className="tab-select">Choose face shape</span>
+            }
+          <div className="faceshape__arrow-wrap">
+            <p>Then <strong>ask in the chat</strong> what style you are looking for!</p>
+            <a href="#chat" className="faceshape__arrow">
+              <ArrowDownOutlined />
+            </a>
+          </div>
+          {faceShape && !screenshot &&
+            <div className="faceshapes__wrap">
+              <img src={faceShape.image} />
+              <div>
+                <h3>{faceShape.shapeType}</h3>
+                <p>{faceShape.shapeDef}</p>
+              </div>
+            </div>
+          }
+        </div>
       }
       {webcamActive && 
         <WebcamModal
