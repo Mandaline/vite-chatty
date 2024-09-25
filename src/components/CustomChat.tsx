@@ -13,7 +13,7 @@ const CustomChat: React.FC<CustomChatProps> = ({
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [, setLoading] = useState<boolean>(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
 
